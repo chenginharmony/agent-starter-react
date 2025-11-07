@@ -3,25 +3,7 @@ import { motion } from 'motion/react';
 import { PaperPlaneRightIcon, SpinnerIcon } from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/livekit/button';
 
-const MOTION_PROPS = {
-  variants: {
-    hidden: {
-      height: 0,
-      opacity: 0,
-      marginBottom: 0,
-    },
-    visible: {
-      height: 'auto',
-      opacity: 1,
-      marginBottom: 12,
-    },
-  },
-  initial: 'hidden',
-  transition: {
-    duration: 0.3,
-    ease: 'easeOut',
-  },
-};
+// Inline motion props into the motion.div below to avoid type conflicts with easing strings
 
 interface ChatInputProps {
   chatOpen: boolean;
@@ -63,7 +45,12 @@ export function ChatInput({
   return (
     <motion.div
       inert={!chatOpen}
-      {...MOTION_PROPS}
+      variants={{
+        hidden: { height: 0, opacity: 0, marginBottom: 0 },
+        visible: { height: 'auto', opacity: 1, marginBottom: 12 },
+      }}
+      initial="hidden"
+      transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
       animate={chatOpen ? 'visible' : 'hidden'}
       className="border-input/50 flex w-full items-start overflow-hidden border-b"
     >

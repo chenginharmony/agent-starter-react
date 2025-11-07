@@ -19,26 +19,6 @@ import { ScrollArea } from '../livekit/scroll-area/scroll-area';
 const MotionBottom = motion.create('div');
 
 const IN_DEVELOPMENT = process.env.NODE_ENV !== 'production';
-const BOTTOM_VIEW_MOTION_PROPS = {
-  variants: {
-    visible: {
-      opacity: 1,
-      translateY: '0%',
-    },
-    hidden: {
-      opacity: 0,
-      translateY: '100%',
-    },
-  },
-  initial: 'hidden',
-  animate: 'visible',
-  exit: 'hidden',
-  transition: {
-    duration: 0.3,
-    delay: 0.5,
-    ease: 'easeOut',
-  },
-};
 
 interface FadeProps {
   top?: boolean;
@@ -114,7 +94,14 @@ export const SessionView = ({
 
       {/* Bottom */}
       <MotionBottom
-        {...BOTTOM_VIEW_MOTION_PROPS}
+        variants={{
+          visible: { opacity: 1, translateY: '0%' },
+          hidden: { opacity: 0, translateY: '100%' },
+        }}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        transition={{ duration: 0.3, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
         className="fixed inset-x-3 bottom-0 z-50 md:inset-x-12"
       >
         {appConfig.isPreConnectBufferEnabled && (

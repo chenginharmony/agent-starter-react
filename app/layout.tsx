@@ -58,9 +58,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       )}
     >
       <head>
-  {/* site favicon and touch icon (local asset) */}
-  <link rel="icon" href="/fav.png" />
-  <link rel="apple-touch-icon" href="/fav.png" />
+        {/* site favicon and touch icon (local asset) */}
+        <link rel="icon" href="/fav.png" />
+        <link rel="apple-touch-icon" href="/fav.png" />
         {styles && <style>{styles}</style>}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />

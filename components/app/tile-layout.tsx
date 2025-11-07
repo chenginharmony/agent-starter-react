@@ -13,13 +13,6 @@ import { cn } from '@/lib/utils';
 
 const MotionContainer = motion.create('div');
 
-const ANIMATION_TRANSITION = {
-  type: 'spring',
-  stiffness: 675,
-  damping: 75,
-  mass: 1,
-};
-
 const classNames = {
   // GRID
   // 2 Columns x 3 Rows
@@ -119,7 +112,10 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                     scale: chatOpen ? 1 : 5,
                   }}
                   transition={{
-                    ...ANIMATION_TRANSITION,
+                    type: 'spring',
+                    stiffness: 675,
+                    damping: 75,
+                    mass: 1,
                     delay: animationDelay,
                   }}
                   className={cn(
@@ -164,14 +160,13 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                     borderRadius: chatOpen ? 6 : 12,
                   }}
                   transition={{
-                    ...ANIMATION_TRANSITION,
+                    type: 'spring',
+                    stiffness: 675,
+                    damping: 75,
+                    mass: 1,
                     delay: animationDelay,
-                    maskImage: {
-                      duration: 1,
-                    },
-                    filter: {
-                      duration: 1,
-                    },
+                    maskImage: { duration: 1 },
+                    filter: { duration: 1 },
                   }}
                   className={cn(
                     'overflow-hidden bg-black drop-shadow-xl/80',
@@ -216,7 +211,10 @@ export function TileLayout({ chatOpen }: TileLayoutProps) {
                     scale: 0,
                   }}
                   transition={{
-                    ...ANIMATION_TRANSITION,
+                    type: 'spring',
+                    stiffness: 675,
+                    damping: 75,
+                    mass: 1,
                     delay: animationDelay,
                   }}
                   className="drop-shadow-lg/20"

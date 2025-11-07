@@ -10,24 +10,6 @@ import { WelcomeView } from '@/components/app/welcome-view';
 const MotionWelcomeView = motion.create(WelcomeView);
 const MotionSessionView = motion.create(SessionView);
 
-const VIEW_MOTION_PROPS = {
-  variants: {
-    visible: {
-      opacity: 1,
-    },
-    hidden: {
-      opacity: 0,
-    },
-  },
-  initial: 'hidden',
-  animate: 'visible',
-  exit: 'hidden',
-  transition: {
-    duration: 0.5,
-    ease: 'linear',
-  },
-};
-
 export function ViewController() {
   const room = useRoomContext();
   const isSessionActiveRef = useRef(false);
@@ -49,7 +31,11 @@ export function ViewController() {
       {!isSessionActive && (
         <MotionWelcomeView
           key="welcome"
-          {...VIEW_MOTION_PROPS}
+          variants={{ visible: { opacity: 1 }, hidden: { opacity: 0 } }}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
           startButtonText={appConfig.startButtonText}
           onStartCall={startSession}
         />
@@ -58,7 +44,11 @@ export function ViewController() {
       {isSessionActive && (
         <MotionSessionView
           key="session-view"
-          {...VIEW_MOTION_PROPS}
+          variants={{ visible: { opacity: 1 }, hidden: { opacity: 0 } }}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
           appConfig={appConfig}
           onAnimationComplete={handleAnimationComplete}
         />

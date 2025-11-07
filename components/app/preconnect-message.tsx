@@ -7,29 +7,7 @@ import { cn } from '@/lib/utils';
 
 const MotionMessage = motion.create('p');
 
-const VIEW_MOTION_PROPS = {
-  variants: {
-    visible: {
-      opacity: 1,
-      transition: {
-        ease: 'easeIn',
-        duration: 0.5,
-        delay: 0.8,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      transition: {
-        ease: 'easeIn',
-        duration: 0.5,
-        delay: 0,
-      },
-    },
-  },
-  initial: 'hidden',
-  animate: 'visible',
-  exit: 'hidden',
-};
+// Inline motion props in the component to avoid strict typing issues with literal easing strings
 
 interface PreConnectMessageProps {
   messages?: ReceivedChatMessage[];
@@ -41,7 +19,27 @@ export function PreConnectMessage({ className, messages = [] }: PreConnectMessag
     <AnimatePresence>
       {messages.length === 0 && (
         <MotionMessage
-          {...VIEW_MOTION_PROPS}
+          variants={{
+            visible: {
+              opacity: 1,
+              transition: {
+                ease: [0.4, 0, 0.2, 1],
+                duration: 0.5,
+                delay: 0.8,
+              },
+            },
+            hidden: {
+              opacity: 0,
+              transition: {
+                ease: [0.4, 0, 0.2, 1],
+                duration: 0.5,
+                delay: 0,
+              },
+            },
+          }}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
           aria-hidden={messages.length > 0}
           className={cn('pointer-events-none text-center', className)}
         >
