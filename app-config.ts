@@ -20,8 +20,8 @@ export interface AppConfig {
 }
 
 export const APP_CONFIG_DEFAULTS: AppConfig = {
-  companyName: 'LiveKit',
-  pageTitle: 'LiveKit Voice Agent',
+  companyName: 'NaijaPrompt',
+  pageTitle: 'OgaTalk by NaijaPrompt',
   pageDescription: 'A voice agent built with LiveKit',
 
   supportsChatInput: true,
@@ -29,11 +29,14 @@ export const APP_CONFIG_DEFAULTS: AppConfig = {
   supportsScreenShare: true,
   isPreConnectBufferEnabled: true,
 
-  logo: '/lk-logo.svg',
-  accent: '#002cf2',
-  logoDark: '/lk-logo-dark.svg',
-  accentDark: '#1fd5f9',
-  startButtonText: 'Start call',
+  // Use a hosted logo image by default (provided by the user)
+  logo: 'https://i.ibb.co/Hf23TWDP/Group-29.png',
+  // Accent colors changed to match the provided logo color (#97ffbd)
+  accent: '#97ffbd',
+  logoDark: 'https://i.ibb.co/Hf23TWDP/Group-29.png',
+  // darker variant for hover/dark theme (computed from #97ffbd)
+  accentDark: '#6ab284',
+  startButtonText: 'Start talking',
 
   // for LiveKit Cloud Sandbox
   sandboxId: undefined,
